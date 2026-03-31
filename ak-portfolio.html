@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AK · Health & Wellness Investing</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F7F4EE;
+    --ink: #1A1A18;
+    --ink-muted: #6B6B65;
+    --ink-faint: #A8A89F;
+    --teal: #0F6E56;
+    --teal-light: #E1F5EE;
+    --teal-mid: #1D9E75;
+    --purple: #3C3489;
+    --purple-light: #EEEDFE;
+    --amber: #854F0B;
+    --amber-light: #FAEEDA;
+    --border: rgba(26,26,24,0.1);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* Layout */
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* Nav */
+  nav {
+    padding: 1.5rem 0;
+    border-bottom: 0.5px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: var(--cream);
+    z-index: 100;
+  }
+  nav .inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.8rem;
+    color: var(--ink-muted);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+
+  /* Hero */
+  .hero {
+    padding: 5rem 0 4rem;
+    border-bottom: 0.5px solid var(--border);
+    opacity: 0;
+    transform: translateY(16px);
+    animation: fadeUp 0.7s ease forwards;
+  }
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal);
+    font-weight: 500;
+    margin-bottom: 1.2rem;
+  }
+  .hero-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.4rem, 6vw, 3.5rem);
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+    max-width: 560px;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--teal);
+  }
+  .hero-sub {
+    font-size: 1rem;
+    color: var(--ink-muted);
+    max-width: 480px;
+    margin-bottom: 2rem;
+    line-height: 1.8;
+  }
+  .hero-links {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.78rem;
+    padding: 0.45rem 1rem;
+    border-radius: 100px;
+    border: 0.5px solid var(--border);
+    color: var(--ink-muted);
+    text-decoration: none;
+    transition: all 0.2s;
+    font-weight: 400;
+  }
+  .pill:hover { border-color: var(--ink); color: var(--ink); }
+  .pill-primary {
+    background: var(--ink);
+    color: var(--cream);
+    border-color: var(--ink);
+  }
+  .pill-primary:hover { background: var(--teal); border-color: var(--teal); color: white; }
+
+  /* Section base */
+  section {
+    padding: 4rem 0;
+    border-bottom: 0.5px solid var(--border);
+    opacity: 0;
+    transform: translateY(12px);
+    animation: fadeUp 0.6s ease forwards;
+  }
+  section:nth-child(2) { animation-delay: 0.1s; }
+  section:nth-child(3) { animation-delay: 0.2s; }
+  section:nth-child(4) { animation-delay: 0.3s; }
+  section:nth-child(5) { animation-delay: 0.4s; }
+  section:nth-child(6) { animation-delay: 0.5s; }
+
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 500;
+    margin-bottom: 2rem;
+  }
+
+  /* Thesis */
+  .thesis-block {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    border: 0.5px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .thesis-block::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--teal-mid);
+  }
+  .thesis-text {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem;
+    line-height: 1.65;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+  .tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .tag {
+    font-size: 0.72rem;
+    font-weight: 500;
+    padding: 0.3rem 0.85rem;
+    border-radius: 100px;
+    letter-spacing: 0.03em;
+  }
+  .tag-teal { background: var(--teal-light); color: var(--teal); }
+  .tag-purple { background: var(--purple-light); color: var(--purple); }
+  .tag-amber { background: var(--amber-light); color: var(--amber); }
+
+  /* Writing cards */
+  .cards { display: flex; flex-direction: column; gap: 1px; border: 0.5px solid var(--border); border-radius: 16px; overflow: hidden; }
+  .writing-card {
+    background: white;
+    padding: 1.5rem 1.75rem;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.2s;
+    display: block;
+  }
+  .writing-card:hover { background: #FAFAF7; }
+  .card-meta {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  .card-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.05rem;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+    line-height: 1.4;
+  }
+  .card-desc { font-size: 0.85rem; color: var(--ink-muted); line-height: 1.6; }
+  .card-link {
+    font-size: 0.78rem;
+    color: var(--teal);
+    font-weight: 500;
+    margin-top: 0.75rem;
+    display: inline-block;
+  }
+  .card-placeholder {
+    background: #FAFAF7;
+    border-top: 0.5px dashed var(--border);
+    padding: 1.25rem 1.75rem;
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+
+  /* Memo */
+  .memo-card {
+    background: white;
+    border-radius: 16px;
+    border: 0.5px solid var(--border);
+    overflow: hidden;
+  }
+  .memo-header {
+    padding: 1.75rem;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .memo-badge {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 500;
+    padding: 0.25rem 0.75rem;
+    border-radius: 100px;
+    background: var(--teal-light);
+    color: var(--teal);
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.03em;
+  }
+  .memo-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+  }
+  .memo-desc { font-size: 0.85rem; color: var(--ink-muted); }
+  .memo-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .memo-stat {
+    padding: 1.25rem 1.5rem;
+    border-right: 0.5px solid var(--border);
+  }
+  .memo-stat:last-child { border-right: none; }
+  .memo-stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem;
+    color: var(--ink);
+  }
+  .memo-stat-label {
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 2px;
+  }
+  .memo-footer {
+    padding: 1rem 1.75rem;
+    background: #FAFAF7;
+    border-top: 0.5px solid var(--border);
+    font-size: 0.78rem;
+    color: var(--teal);
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  /* Watchlist */
+  .watchlist { display: flex; flex-direction: column; gap: 1px; border: 0.5px solid var(--border); border-radius: 16px; overflow: hidden; }
+  .watch-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.1rem 1.5rem;
+    background: white;
+    transition: background 0.15s;
+  }
+  .watch-row:hover { background: #FAFAF7; }
+  .watch-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .dot-teal { background: var(--teal-mid); }
+  .dot-purple { background: #7F77DD; }
+  .dot-amber { background: #EF9F27; }
+  .watch-name {
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--ink);
+    min-width: 160px;
+  }
+  .watch-cat {
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    min-width: 140px;
+  }
+  .watch-why { font-size: 0.83rem; color: var(--ink-muted); }
+
+  /* About */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .about-card {
+    background: white;
+    border-radius: 12px;
+    border: 0.5px solid var(--border);
+    padding: 1.5rem;
+  }
+  .about-main {
+    grid-column: 1 / -1;
+    padding: 1.75rem;
+  }
+  .about-text {
+    font-size: 0.9rem;
+    color: var(--ink-muted);
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+  }
+  .about-contact {
+    font-size: 0.82rem;
+    color: var(--ink-muted);
+  }
+  .about-contact a { color: var(--teal); text-decoration: none; }
+
+  /* Footer */
+  footer {
+    padding: 2.5rem 0;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+  }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 600px) {
+    .memo-stats { grid-template-columns: 1fr; }
+    .memo-stat { border-right: none; border-bottom: 0.5px solid var(--border); }
+    .watch-cat, .watch-why { display: none; }
+    .about-grid { grid-template-columns: 1fr; }
+    .about-main { grid-column: 1; }
+    nav .inner { flex-direction: column; gap: 1rem; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container inner">
+    <a href="#" class="nav-logo">AK</a>
+    <ul class="nav-links">
+      <li><a href="#thesis">Thesis</a></li>
+      <li><a href="#writing">Writing</a></li>
+      <li><a href="#memo">Memo</a></li>
+      <li><a href="#watchlist">Watchlist</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+
+  <!-- Hero -->
+  <div class="hero" id="top">
+    <p class="hero-eyebrow">Pre-MBA · Health & Wellness Investing</p>
+    <h1 class="hero-title">Tracking the future of <em>health</em> in India</h1>
+    <p class="hero-sub">I research early-stage consumer health and wellness companies in India — with a focus on sports nutrition, where rising incomes and fitness culture are creating a generational brand-building opportunity.</p>
+    <div class="hero-links">
+      <a href="mailto:your@email.com" class="pill pill-primary">Get in touch ↗</a>
+      <a href="#" class="pill">LinkedIn ↗</a>
+      <a href="#" class="pill">Substack ↗</a>
+      <a href="#" class="pill">Mumbai, India</a>
+    </div>
+  </div>
+
+  <!-- Thesis -->
+  <section id="thesis">
+    <p class="section-label">Investment thesis</p>
+    <div class="thesis-block">
+      <p class="thesis-text">India's health and wellness market is at an inflection point — rising disposable incomes, post-pandemic awareness, and a young, aspirational consumer base are converging. The biggest opportunity is in brands that can own a behaviour, not just a product category. I focus on companies where distribution, trust, and repeat purchase are the moat.</p>
+      <div class="tags">
+        <span class="tag tag-teal">Sports nutrition</span>
+        <span class="tag tag-purple">Mental health tech</span>
+        <span class="tag tag-amber">Preventive diagnostics</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Writing -->
+  <section id="writing">
+    <p class="section-label">Writing & research</p>
+    <div class="cards">
+      <a href="#" class="writing-card">
+        <p class="card-meta">Sector deep-dive · Substack</p>
+        <p class="card-title">The ₹5,000Cr opportunity in Indian sports nutrition — who wins and why</p>
+        <p class="card-desc">Market sizing, consumer behaviour shifts, key players, white spaces, and what the next category leader looks like. 2,200 words.</p>
+        <span class="card-link">Read on Substack ↗</span>
+      </a>
+      <a href="#" class="writing-card">
+        <p class="card-meta">Market map · Original research</p>
+        <p class="card-title">India sports nutrition landscape 2024 — mapping 30+ brands</p>
+        <p class="card-desc">A competitive map across mass-market, premium, and performance tiers. Includes funding data and channel strategy breakdown.</p>
+        <span class="card-link">View map ↗</span>
+      </a>
+      <div class="card-placeholder">More writing coming soon — currently working on a deep-dive into D2C distribution models in Tier 2 India.</div>
+    </div>
+  </section>
+
+  <!-- Memo -->
+  <section id="memo">
+    <p class="section-label">Investment memo</p>
+    <div class="memo-card">
+      <div class="memo-header">
+        <span class="memo-badge">✓ Recommend investment</span>
+        <p class="memo-title">Company X — Pre-Series A Investment Memo</p>
+        <p class="memo-desc">A sports nutrition D2C brand targeting the performance segment. Full analysis of market opportunity, unit economics, team, and risks.</p>
+      </div>
+      <div class="memo-stats">
+        <div class="memo-stat">
+          <p class="memo-stat-num">₹800Cr</p>
+          <p class="memo-stat-label">TAM estimate</p>
+        </div>
+        <div class="memo-stat">
+          <p class="memo-stat-num">3.2×</p>
+          <p class="memo-stat-label">Revenue YoY</p>
+        </div>
+        <div class="memo-stat">
+          <p class="memo-stat-num">Seed</p>
+          <p class="memo-stat-label">Stage</p>
+        </div>
+      </div>
+      <div class="memo-footer">Read full memo ↗</div>
+    </div>
+  </section>
+
+  <!-- Watchlist -->
+  <section id="watchlist">
+    <p class="section-label">Companies I'm watching</p>
+    <div class="watchlist">
+      <div class="watch-row">
+        <div class="watch-dot dot-teal"></div>
+        <span class="watch-name">Wellbeing Nutrition</span>
+        <span class="watch-cat">D2C supplements</span>
+        <span class="watch-why">Science-led positioning in a crowded market</span>
+      </div>
+      <div class="watch-row">
+        <div class="watch-dot dot-purple"></div>
+        <span class="watch-name">Bombay Hemp Co.</span>
+        <span class="watch-cat">Wellness / hemp</span>
+        <span class="watch-why">Regulatory arbitrage + early mover advantage</span>
+      </div>
+      <div class="watch-row">
+        <div class="watch-dot dot-teal"></div>
+        <span class="watch-name">Nua</span>
+        <span class="watch-cat">Women's health</span>
+        <span class="watch-why">Strong community flywheel, repeat purchase model</span>
+      </div>
+      <div class="watch-row">
+        <div class="watch-dot dot-amber"></div>
+        <span class="watch-name">Cure.fit</span>
+        <span class="watch-cat">Fitness + nutrition</span>
+        <span class="watch-why">Omnichannel play, watching unit economics closely</span>
+      </div>
+      <div class="watch-row">
+        <div class="watch-dot dot-purple"></div>
+        <span class="watch-name">Wysa</span>
+        <span class="watch-cat">Mental health tech</span>
+        <span class="watch-why">AI-first, global B2B ambition from India base</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <p class="section-label">About</p>
+    <div class="about-grid">
+      <div class="about-card about-main">
+        <p class="about-text">I'm AK, based in Mumbai. Finance and business background with early career experience in financial services. I'm building towards a career in venture capital focused on consumer health and wellness in India — a market I believe is at an early but durable inflection point.<br><br>Currently seeking pre-MBA VC internships where I can contribute sector research, deal sourcing, and investment analysis while learning from operators and investors building this ecosystem.</p>
+        <p class="about-contact">
+          Reach me at <a href="mailto:your@email.com">your@email.com</a> &nbsp;·&nbsp;
+          <a href="#">LinkedIn</a> &nbsp;·&nbsp;
+          <a href="#">Substack</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="container">
+    AK · Mumbai · Health & Wellness Investing · 2024
+  </div>
+</footer>
+
+</body>
+</html>
